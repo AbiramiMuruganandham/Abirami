@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        font-family: cursive;
+        background-image: url(/bacimg.webp);
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .container {
+        text-align: center;
+        height: fit-content;
+        /*background-color: antiquewhite;*/
+    }
+
+    .guessNumber {
+        text-align: center;
+    }
+
+    h5 {
+        color: brown;
+    }
+
+    .Restart {
+        text-align: center;
+    }
+
+    ::placeholder {
+        text-align: center;
+    }
+</style>
+
+<body>
+
+
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-sm-12 ">
+                <h5> NUMBER GUESSING GAME</h5>
+
+                <p class="demo">Simply enter a number between <span style="color: brown;">1 - 100 </span> then click the
+                    button</p>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-sm-12">
+                <div class="mt-4 d-inline-block">
+
+                    <input type="text" id="guessNumber" placeholder="Enter the Number" class="guessNumber form-control"
+                        value=""><br>
+                    <button id="guessSubmit" class="guessSubmit btn btn-success"
+                        onclick="getValueInput()">Submit</button>
+                    <!--<button type='hidden' id="Restart" class="Restart" onclick="RestartGame()">Restart Game</button>-->
+                    <div class="resultPanel text-center lead">
+                        <p id="guesses" class="guesses"></p>
+                        <p id="previousResult" class="previousResult"></p>
+                        <p id="lowOrHi" class="lowOrHi"></p>
+                        <p id="userAnswer" class="userAnswer"></p>
+                        <p id="Result" class="Result"></p>
+
+                        <button type='hidden' id="Restart" class="Restart btn btn-info" onclick="RestartGame()">Play
+                            Again</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script>
+    document.getElementById('Restart').style.display = 'none'; //Hide Restart Button
+    var numCount = 1;  // count value 
+    function getValueInput() {
+        // debugger;
+        var userNumber = document.getElementById("guessNumber").value; // get input value in userNumber
+        console.log(userNumber);
+        if (userNumber == "") {  // incause user click the submit button without enter the number ,show the alert and return false
+            alert("Please Enter the Number!")
+            return false;
+        }
+
+        guessNumber.value = '';
+        guessNumber.focus();  // focus the input box after click submit
+
+        if (numCount <= 10) {
+            numCount++;
+        }
+        else {
+            document.getElementById('Result').innerText = "YOU ARE LOST THE GAME"
+            alert("Game Over!");
+            //document.getElementById('Restart').style.visibility = 'visible';
+            document.getElementById('guessSubmit').style.display = 'none'; //hide submit button
+            document.getElementById('guessNumber').style.display = 'none'; //hide input box
+            document.getElementById('Restart').style.display = 'inline'; //show restart button
+        }
+
+        var randomNumber = Math.floor(Math.random() * 100) + 1;
+        console.log(randomNumber);
+
+
+
+        document.getElementById('userAnswer').innerHTML = 'previous Gussing Number is :' + userNumber; //show previous Enter number  
+        if (randomNumber == userNumber) {  //in this condtion check random number equel to usernumber or not
+            console.log("Your Guess is Correct!");
+            document.getElementById('previousResult').innerText = "CORRECT ANSWER!"
+            document.getElementById('Result').innerText = "YOU ARE WON THE GAME!"
+            previousResult.style.backgroundColor = 'green';
+            document.getElementById('guessSubmit').style.display = 'none';
+            document.getElementById('lowOrHi').style.display = 'none';
+
+            document.getElementById('Restart').style.display = 'inline';
+        } else {
+            console.log("Wrog!");
+            document.getElementById('previousResult').innerText = "WRONG ANSWER."
+            previousResult.style.backgroundColor = 'red';
+        }
+        if (randomNumber < userNumber) {
+            document.getElementById('lowOrHi').innerText = "GUSSING NUMBER IS HIGH!"
+
+        } else {
+            document.getElementById('lowOrHi').innerText = "GUSSING NUMBER IS LOW!"
+        }
+    }
+</script>
+<script>
+    function RestartGame() {
+
+        window.location.reload(); //page refresh
+    }
+
+</script>
+
+</html>

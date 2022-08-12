@@ -1,0 +1,9 @@
+1.  In this program i Create one input box and submit button. and I use onclick function in this button tag.
+2. declar count value  outside of the function. create one more button and using onclick function(RestartGame()),i hide the button.
+3. Create one sumbit function. get the input vale in  variable(userNumber).
+4. next using if condtion. because of, the user click the sumbit button without enter the number one alert showing. and return false the if condtion closed.
+5.next take count value. user click the button count the value. condtion execute 10 times only. condtion stop after 10th time of click the button.submit button and input box are hide the and show the message you are loss the game. and also show the Restart game button.
+6. create one more function. user click Restart button, window reload refresh the page and game was restart.
+7. chech the user input number and randomNumber. if user input and random number both are same , show the message "you are won the game" and restart thr game again.
+8. incause user input was wrong show the error message,and also show the message that number is high or low comparing to random number.
+9. user not won the game , the game was end and start again the game.
