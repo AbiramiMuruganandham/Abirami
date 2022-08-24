@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<style>
+    ::placeholder {
+        text-align: center;
+    }
+</style>
+
+<body>
+    <section class="vh-100 bg-image"
+        style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');">
+        <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+            <div class="container h-100">
+                <div class="row d-flex justify-content-center align-items-center h-100">
+                    <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                        <div class="card" style="border-radius: 15px;">
+                            <div class="card-body p-5">
+                                <h2 class="text-uppercase text-center mb-5">SignUp</h2>
+
+                                <form>
+
+                                    <div class="form-outline mb-4">
+                                        <input type="text" id="Name" class="form-control form-control-lg" name="Name"
+                                            placeholder="Enter Your Name" />
+
+                                    </div>
+
+                                    <div class="form-outline mb-4">
+                                        <input type="email" id="Email" class="form-control form-control-lg" name="Email"
+                                            placeholder="Enter Your Email" />
+
+                                    </div>
+
+                                    <div class="form-outline mb-4">
+                                        <input type="password" id="Password" class="form-control form-control-lg"
+                                           placeholder="Enter Password" />
+                                    </div>
+
+                                    <div class="d-flex justify-content-center">
+                                        <button type="button"
+                                            class="btn btn-success btn-block btn-lg gradient-custom-4 text-body"
+                                            id="Register" name="Register">Register</button>
+                                    </div>
+
+                                    <p class="text-center text-muted mt-5 mb-0">Have already an account? <a
+                                            href="login.html" class="fw-bold text-body"><u>Login here</u></a></p>
+
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+<script>
+    Register.addEventListener('click', () => {
+        var existingEntries = JSON.parse(localStorage.getItem("userEntries"));
+        if (existingEntries == null) existingEntries = [];
+        var name = document.getElementById('Name');
+        var passwrd = document.getElementById('Password');
+        var mail = document.getElementById('Email');
+        var lowerCaseLetters = /[a-z]/g;
+        var upperCaseLetters = /[A-Z]/g;
+        var numbers = /[0-9]/g;
+
+        if (name.value.length == 0) {
+            alert('Please fill in Name');
+            name = document.createElement("span");
+
+        } else if (passwrd.value.length == 0) {
+            alert('Please fill in password');
+
+        } else if (name.value.length == 0 && passwrd.value.length == 0) {
+            alert('Please fill in Email and password');
+
+        } else if (passwrd.value.length > 8) {
+            alert('Max of 8');
+
+        } else if (!passwrd.value.match(numbers)) {
+            alert('please add 1 number');
+
+        } else if (!passwrd.value.match(upperCaseLetters)) {
+            alert('please add 1 uppercase letter');
+
+        } else if (!passwrd.value.match(lowerCaseLetters)) {
+            alert('please add 1 lowercase letter');
+
+        } else {
+            var person = {
+                "Name": name.value,
+                "Password": passwrd.value
+            };
+            localStorage.setItem("person", JSON.stringify(person));
+
+            existingEntries.push(person);
+            localStorage.setItem("userEntries", JSON.stringify(existingEntries));
+
+            alert('Your account has been created');
+            window.location.reload();
+           
+        }
+
+    });
+</script>
+
+</html>
